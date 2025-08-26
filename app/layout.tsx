@@ -1,17 +1,20 @@
 import './globals.css'
 
 import type { Metadata } from 'next'
-import { Carattere, Roboto } from 'next/font/google'
+import { Libre_Caslon_Display, Oooh_Baby, Qwigley, Roboto } from 'next/font/google'
 
-const carratte = Carattere({
+import { AiAssistant } from '@/app/components/AiAssistant/AiAssistant'
+
+const libredisplay = Libre_Caslon_Display({
   subsets: ['latin'],
-  variable: '--font-carattere',
+  variable: '--font-libredisplay',
   weight: '400'
 })
 
-const roboto = Roboto({
+const qwigley = Qwigley({
   subsets: ['latin'],
-  variable: '--font-roboto'
+  variable: '--font-qwigley',
+  weight: '400'
 })
 
 export const metadata: Metadata = {
@@ -26,7 +29,21 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${carratte.variable} ${roboto.variable}`}>{children}</body>
+      <body className={`${libredisplay.variable} ${qwigley.variable}`}>
+        <div className="p-3 sm:p-6 flex flex-col sm:flex-row justify-between sm:items-center font-libredisplay border-b-1">
+          <div className="w-full flex flex-col sm:flex-row text-left sm:mt-0 mb-5 sm:mb-0">
+            <h1 className="font-libredisplay text-3xl sm:text-4xl">
+              <span className="uppercase">The Bridalist</span>
+              <span className="text-2xl block">Kirsty Hollick</span>
+            </h1>
+            {/*<div className="text-3xl pb-4 sm:pr-4 sm:pb-0">*/}
+            {/*  <Instagram />*/}
+            {/*</div>*/}
+          </div>
+          <AiAssistant />
+        </div>
+        {children}
+      </body>
     </html>
   )
 }

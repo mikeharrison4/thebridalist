@@ -19,7 +19,6 @@ export default function Search() {
   useEffect(() => {
     if (!query || completed.current) return
 
-    console.log(query)
     complete(query)
     completed.current = true
   }, [complete, query])
@@ -31,10 +30,7 @@ export default function Search() {
   }, [isLoading])
 
   return (
-    <div>
-      <div className="flex justify-center">
-        <AiAssistant inputValue={query || ''} />
-      </div>
+    <div className="p-6">
       {completion}
     </div>
   )

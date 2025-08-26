@@ -1,6 +1,6 @@
 @import "tailwindcss";
 
 @theme {
-    --font-carattere: "var(--font-carattere)";
-    --font-roboto: "var(--font-roboto)"
+    --font-libredisplay: "var(--font-libredisplay)";
+    --font-qwigley: "var(--font-qwigley)"
 }
