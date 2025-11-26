@@ -1,7 +1,7 @@
 import './globals.css'
 
 import type { Metadata } from 'next'
-import { Libre_Caslon_Display, Oooh_Baby, Qwigley, Roboto } from 'next/font/google'
+import { Libre_Caslon_Display, Qwigley } from 'next/font/google'
 
 import { AiAssistant } from '@/app/components/AiAssistant/AiAssistant'
 
@@ -30,8 +30,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${libredisplay.variable} ${qwigley.variable}`}>
-        <div className="p-3 sm:p-6 flex flex-col sm:flex-row justify-between sm:items-center font-libredisplay border-b-1">
-          <div className="w-full flex flex-col sm:flex-row text-left sm:mt-0 mb-5 sm:mb-0">
+        <header className="p-3 sm:p-6 flex flex-col sm:flex-row justify-between sm:items-center font-libredisplay border-b-1">
+          <div className="w-full flex flex-col sm:flex-row text-left sm:mt-0">
             <h1 className="font-libredisplay text-3xl sm:text-4xl">
               <span className="uppercase">The Bridalist</span>
               <span className="text-2xl block">Kirsty Hollick</span>
@@ -40,8 +40,10 @@ export default function RootLayout({
             {/*  <Instagram />*/}
             {/*</div>*/}
           </div>
-          <AiAssistant />
-        </div>
+          <div className="hidden sm:block w-full">
+            <AiAssistant />
+          </div>
+        </header>
         {children}
       </body>
     </html>

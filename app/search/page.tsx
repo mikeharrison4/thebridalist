@@ -14,8 +14,6 @@ export default function Search() {
   const searchParams = useSearchParams()
   const query = searchParams.get('query')
 
-  const [input, setInput] = useState(query)
-
   useEffect(() => {
     if (!query || completed.current) return
 
@@ -29,9 +27,5 @@ export default function Search() {
     }
   }, [isLoading])
 
-  return (
-    <div className="p-6">
-      {completion}
-    </div>
-  )
+  return <div className="p-6 font-libredisplay">{completion}</div>
 }
