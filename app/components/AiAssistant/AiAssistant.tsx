@@ -20,23 +20,23 @@ export function AiAssistant({ inputValue = '' }) {
   return (
     <Dialog.Root open={open} onOpenChange={setOpen}>
       <div className="flex flex-col sm:w-full items-center sm:items-end font-libredisplay">
-        <h2 className="uppercase text-right text-xs">My Bridal Assistant</h2>
+        <h2 className="uppercase text-right text-xs tracking-wider text-gray-600 mb-2">
+          My Bridal Assistant
+        </h2>
         <Dialog.Trigger asChild>
-          <button className="border-b-1 border-[#afafaf] p-2 cursor-pointer min-w-1/2 text-center sm:text-right relative uppercase text-sm text-[#afafaf]">
-            <span className="absolute left-0 sm:text-2xl sm:top-0">✨</span>
-            <span className="pl-2 sm:pl-6 text-xs">
-              {input || 'Ask anything'}
-            </span>
+          <button className="border border-gray-300 px-4 py-2 cursor-pointer text-center sm:text-right uppercase text-sm tracking-wider hover:bg-gray-50 transition-colors duration-200 font-libredisplay">
+            <span className="pr-2">✨</span>
+            Ask anything
           </button>
         </Dialog.Trigger>
       </div>
       <Dialog.Portal>
-        <Dialog.Overlay className="fixed inset-0 bg-black opacity-40 data-[state=open]:animate-overlayShow" />
-        <Dialog.Content className="font-libredisplay fixed left-1/2 top-1/2 translate-y-[-50%] md:translate-y-0 md:top-3 max-h-[85vh] w-[95vw] md:max-w-3/4 -translate-x-1/2 bg-white p-6 md:p-8 shadow-[var(--shadow-6)] focus:outline-none data-[state=open]:animate-contentShow">
-          <Dialog.Title className="uppercase text-2xl">
+        <Dialog.Overlay className="fixed inset-0 bg-black/50 backdrop-blur-sm data-[state=open]:animate-overlayShow" />
+        <Dialog.Content className="font-libredisplay fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 max-h-[85vh] w-[95vw] md:max-w-2xl bg-white p-8 shadow-lg focus:outline-none data-[state=open]:animate-contentShow">
+          <Dialog.Title className="uppercase text-3xl tracking-wider mb-4">
             Ask me anything!
           </Dialog.Title>
-          <Dialog.Description className="my-3 leading-normal text-mauve11">
+          <Dialog.Description className="mb-6 leading-relaxed tracking-wider text-gray-600">
             This is my personal AI assistant who will be able to tell you
             everything you need to know about the Bridalist!
           </Dialog.Description>
@@ -49,26 +49,29 @@ export function AiAssistant({ inputValue = '' }) {
           >
             <input
               type="text"
-              placeholder="Ask a question"
-              className="border-b-1 border-[#afafaf] p-3 w-full"
+              placeholder="Ask a question..."
+              className="border-b border-gray-300 p-3 w-full focus:outline-none focus:border-gray-500 transition-colors duration-200 tracking-wider font-libredisplay"
               value={input}
               onChange={(event) => setInput(event.target.value)}
             />
           </form>
-          <div className="mt-6">
-            <h4 className="mb-3 uppercase">Suggested searches</h4>
-            <ul className="flex flex-col gap-3 p-0 m-0">
+          <div className="mt-8">
+            <h4 className="mb-4 uppercase tracking-wider text-sm text-gray-600">
+              Suggested searches
+            </h4>
+            <ul className="flex flex-col gap-2 p-0 m-0">
               {SUGGESTED_QUESTIONS.map((question) => (
                 <li key={question}>
                   <Link
-                    className="italic hover:bg-gray-100 p-2 pl-0 w-full text-left cursor-pointer uppercase text-[#afafaf]"
+                    className="block hover:bg-gray-100 p-3 transition-colors duration-200 tracking-wider text-gray-700 border-b border-gray-100 hover:border-gray-300"
                     onClick={() => {
                       setInput(question)
                       setOpen(false)
                     }}
                     href={`/search?query=${encodeURIComponent(question)}`}
                   >
-                    ✨ {question}
+                    <span className="pr-2">✨</span>
+                    {question}
                   </Link>
                 </li>
               ))}
@@ -76,10 +79,10 @@ export function AiAssistant({ inputValue = '' }) {
           </div>
           <Dialog.Close asChild>
             <button
-              className="absolute right-2.5 top-2.5 inline-flex size-[25px] appearance-none items-center justify-center rounded-full text-violet11 bg-gray3 hover:bg-violet4 focus:shadow-[0_0_0_2px] focus:shadow-violet7 focus:outline-none"
+              className="absolute right-4 top-4 inline-flex h-8 w-8 appearance-none items-center justify-center rounded-full text-gray-400 hover:text-gray-600 hover:bg-gray-100 focus:outline-none transition-colors duration-200"
               aria-label="Close"
             >
-              X
+              <span className="text-xl">×</span>
             </button>
           </Dialog.Close>
         </Dialog.Content>

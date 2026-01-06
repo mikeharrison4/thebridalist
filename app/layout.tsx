@@ -4,6 +4,7 @@ import type { Metadata } from 'next'
 import { Libre_Caslon_Display, Qwigley } from 'next/font/google'
 
 import { AiAssistant } from '@/app/components/AiAssistant/AiAssistant'
+import { Navigation } from '@/app/components/Navigation'
 
 const libredisplay = Libre_Caslon_Display({
   subsets: ['latin'],
@@ -30,20 +31,22 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${libredisplay.variable} ${qwigley.variable}`}>
-        <header className="p-3 sm:p-6 flex flex-col sm:flex-row justify-between sm:items-center font-libredisplay border-b-1">
-          <div className="w-full flex flex-col sm:flex-row text-left sm:mt-0">
-            <h1 className="font-libredisplay text-3xl sm:text-4xl">
-              <span className="uppercase">The Bridalist</span>
-              <span className="text-2xl block">Kirsty Hollick</span>
-            </h1>
-            {/*<div className="text-3xl pb-4 sm:pr-4 sm:pb-0">*/}
-            {/*  <Instagram />*/}
-            {/*</div>*/}
-          </div>
-          <div className="hidden sm:block w-full">
-            <AiAssistant />
+        <header className="bg-white border-b border-gray-200 px-6 sm:px-12 md:px-16 py-6 sm:py-8">
+          <div className="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-6 font-libredisplay">
+            <div className="flex-shrink-0">
+              <h1 className="font-libredisplay text-3xl sm:text-4xl md:text-5xl leading-tight">
+                <span className="uppercase tracking-wider block">The Bridalist</span>
+                <span className="text-xl sm:text-2xl md:text-3xl text-gray-700 font-normal block mt-1">
+                  Kirsty Hollick
+                </span>
+              </h1>
+            </div>
+            <div className="hidden sm:flex flex-1 justify-end items-center">
+              <AiAssistant />
+            </div>
           </div>
         </header>
+        <Navigation />
         {children}
       </body>
     </html>

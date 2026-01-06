@@ -1,3 +1,4 @@
+import { readFile } from 'node:fs/promises'
 import path from 'node:path'
 
 import { toUIMessageStream } from '@ai-sdk/langchain'
@@ -7,12 +8,20 @@ import { PromptTemplate } from '@langchain/core/prompts'
 import { RunnableSequence } from '@langchain/core/runnables'
 import { ChatOpenAI } from '@langchain/openai'
 import { createUIMessageStreamResponse } from 'ai'
-import { MultiFileLoader } from 'langchain/document_loaders/fs/multi_file'
-import { TextLoader } from 'langchain/document_loaders/fs/text'
-import { formatDocumentsAsString } from 'langchain/util/document'
 
 // Allow streaming responses up to 30 seconds
 export const maxDuration = 30
+
+// Utility function to format documents as string
+function formatDocumentsAsString(docs: Array<{ pageContent: string }>): string {
+  return docs.map((doc) => doc.pageContent).join('\n\n')
+}
+
+// Simple TextLoader implementation
+async function loadTextFile(filePath: string): Promise<Array<{ pageContent: string }>> {
+  const content = await readFile(filePath, 'utf-8')
+  return [{ pageContent: content }]
+}
 
 const TEMPLATE = `You are the bridalists friendly and knowledgable AI assistant. You help potential customers find out valuable information about the bridalists business using information from her terms and conditions, price list and preparation guidance. Answer the user's questions based only on the following context. If the answer is not in the context reply politely that you do not have that information available.:
 Instructions:
@@ -34,46 +43,66 @@ user: {question}
 assistant:`
 
 export async function POST(req: Request) {
-  const { prompt: question } = await req.json()
+  try {
+    const { prompt: question } = await req.json()
 
-  const publicDir = path.join(process.cwd(), 'public')
-  const termsAndConditionsPath = `${publicDir}/terms-and-conditions.pdf`
-  const prepGuidancePath = `${publicDir}/prep-guidance.pdf`
-  const pricesPath = `${publicDir}/prices.txt`
-
-  const loader = new MultiFileLoader(
-    [termsAndConditionsPath, prepGuidancePath, pricesPath],
-    {
-      '.pdf': (path: string) => new PDFLoader(path),
-      '.txt': (path: string) => new TextLoader(path)
+    if (!question) {
+      return new Response(JSON.stringify({ error: 'Question is required' }), {
+        status: 400,
+        headers: { 'Content-Type': 'application/json' }
+      })
     }
-  )
 
-  const docs = await loader.load()
+    const publicDir = path.join(process.cwd(), 'public')
+    const termsAndConditionsPath = `${publicDir}/terms-and-conditions.pdf`
+    const prepGuidancePath = `${publicDir}/prep-guidance.pdf`
+    const pricesPath = `${publicDir}/prices.txt`
 
-  const prompt = PromptTemplate.fromTemplate(TEMPLATE)
+    // Load documents individually
+    const [termsDocs, prepDocs, pricesDocs] = await Promise.all([
+      new PDFLoader(termsAndConditionsPath).load(),
+      new PDFLoader(prepGuidancePath).load(),
+      loadTextFile(pricesPath)
+    ])
 
-  const model = new ChatOpenAI({
-    model: 'gpt-3.5-turbo-0125',
-    temperature: 0,
-    streaming: true
-  })
+    const docs = [...termsDocs, ...prepDocs, ...pricesDocs]
 
-  const parser = new StringOutputParser()
+    const prompt = PromptTemplate.fromTemplate(TEMPLATE)
 
-  const chain = RunnableSequence.from([
-    {
-      question: (input) => input.question,
-      context: () => formatDocumentsAsString(docs)
-    },
-    prompt,
-    model,
-    parser
-  ])
+    const model = new ChatOpenAI({
+      model: 'gpt-3.5-turbo-0125',
+      temperature: 0,
+      streaming: true
+    })
 
-  const stream = await chain.stream({ question })
+    const parser = new StringOutputParser()
 
-  return createUIMessageStreamResponse({
-    stream: toUIMessageStream(stream)
-  })
+    const chain = RunnableSequence.from([
+      {
+        question: (input: { question: string }) => input.question,
+        context: () => formatDocumentsAsString(docs)
+      },
+      prompt,
+      model,
+      parser
+    ] as any)
+
+    const stream = await chain.stream({ question })
+
+    return createUIMessageStreamResponse({
+      stream: toUIMessageStream(stream)
+    })
+  } catch (error) {
+    console.error('Error in completion route:', error)
+    return new Response(
+      JSON.stringify({
+        error: 'Internal server error',
+        message: error instanceof Error ? error.message : 'Unknown error'
+      }),
+      {
+        status: 500,
+        headers: { 'Content-Type': 'application/json' }
+      }
+    )
+  }
 }
