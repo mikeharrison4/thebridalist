@@ -2,5 +2,7 @@
 
 @theme {
     --font-libredisplay: "var(--font-libredisplay)";
-    --font-qwigley: "var(--font-qwigley)"
+    --font-qwigley: "var(--font-qwigley)";
+    --color-greige-50: #f5f3f0;
+    --color-greige-100: #e8e4df;
 }

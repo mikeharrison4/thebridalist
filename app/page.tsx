@@ -15,11 +15,7 @@ export default function Home() {
             <AiAssistant />
           </div>
           <p className="text-center tracking-wider mx-6 sm:mx-28 md:mx-48">
-            Planning your wedding should be exciting, not stressful. At Petal
-            Blush, I specialise in natural, timeless bridal makeup and elegant,
-            effortless hairstyles that enhance your natural beauty. Every detail
-            is designed to make you feel like the very best version of yourself
-            - confident, radiant, and truly you.
+            Your wedding day should feel magical, not overwhelming. At The Bridalist, I create effortless, glowing makeup and elegant hairstyles tailored just for you. My goal is to bring out your unique beauty and ensure you feel confident, radiant, and truly yourself as you celebrate this special moment.
           </p>
           <AboutMe />
           <Gallery />

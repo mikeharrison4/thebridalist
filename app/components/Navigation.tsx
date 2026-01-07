@@ -40,7 +40,7 @@ export function Navigation() {
   return (
     <nav
       className={`sticky top-0 left-0 right-0 z-50 border-b transition-all duration-300 ${
-        isScrolled ? 'bg-white shadow-md' : 'bg-gray-100'
+        isScrolled ? 'bg-white shadow-md' : 'bg-[#e8e4df]'
       }`}
     >
       <div className="px-6 sm:px-28 md:px-48 py-4">

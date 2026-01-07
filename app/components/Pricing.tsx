@@ -1,6 +1,6 @@
 export function Pricing() {
   return (
-    <div id="pricing" className="bg-gray-100 px-6 sm:px-28 md:px-48 py-16">
+    <div id="pricing" className="bg-[#e8e4df] px-6 sm:px-28 md:px-48 py-16">
       <h2 className="text-3xl sm:text-4xl uppercase mb-8 tracking-wider text-center">
         Pricing
       </h2>
@@ -102,7 +102,7 @@ export function Pricing() {
         </div>
 
         {/* Booking Info */}
-        <div className="bg-gray-50 p-6 rounded-lg mt-8">
+        <div className="bg-[#f5f3f0] p-6 rounded-lg mt-8">
           <h3 className="text-xl uppercase mb-4 text-center">Securing Your Date</h3>
           <p className="text-center leading-relaxed">
             A 25% non-refundable deposit is required to confirm your booking.

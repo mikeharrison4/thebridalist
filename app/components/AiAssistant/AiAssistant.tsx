@@ -24,7 +24,7 @@ export function AiAssistant({ inputValue = '' }) {
           My Bridal Assistant
         </h2>
         <Dialog.Trigger asChild>
-          <button className="border border-gray-300 px-4 py-2 cursor-pointer text-center sm:text-right uppercase text-sm tracking-wider hover:bg-gray-50 transition-colors duration-200 font-libredisplay">
+          <button className="border border-gray-300 px-4 py-2 cursor-pointer text-center sm:text-right uppercase text-sm tracking-wider hover:bg-[#f5f3f0] transition-colors duration-200 font-libredisplay">
             <span className="pr-2">✨</span>
             Ask anything
           </button>
@@ -63,7 +63,7 @@ export function AiAssistant({ inputValue = '' }) {
               {SUGGESTED_QUESTIONS.map((question) => (
                 <li key={question}>
                   <Link
-                    className="block hover:bg-gray-100 p-3 transition-colors duration-200 tracking-wider text-gray-700 border-b border-gray-100 hover:border-gray-300"
+                    className="block hover:bg-[#e8e4df] p-3 transition-colors duration-200 tracking-wider text-gray-700 border-b border-[#e8e4df] hover:border-gray-300"
                     onClick={() => {
                       setInput(question)
                       setOpen(false)
@@ -79,7 +79,7 @@ export function AiAssistant({ inputValue = '' }) {
           </div>
           <Dialog.Close asChild>
             <button
-              className="absolute right-4 top-4 inline-flex h-8 w-8 appearance-none items-center justify-center rounded-full text-gray-400 hover:text-gray-600 hover:bg-gray-100 focus:outline-none transition-colors duration-200"
+              className="absolute right-4 top-4 inline-flex h-8 w-8 appearance-none items-center justify-center rounded-full text-gray-400 hover:text-gray-600 hover:bg-[#e8e4df] focus:outline-none transition-colors duration-200"
               aria-label="Close"
             >
               <span className="text-xl">×</span>

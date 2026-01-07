@@ -40,7 +40,7 @@ export function Gallery() {
         <div className="text-center mt-8">
           <button
             onClick={() => setShowAll(!showAll)}
-            className="px-8 py-3 uppercase tracking-wider border border-gray-300 hover:bg-gray-100 transition-colors duration-300 font-libredisplay"
+            className="px-8 py-3 uppercase tracking-wider border border-gray-300 hover:bg-[#e8e4df] transition-colors duration-300 font-libredisplay"
           >
             {showAll ? 'Show Less' : 'Show More'}
           </button>

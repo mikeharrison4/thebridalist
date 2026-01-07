@@ -3,33 +3,35 @@
 import { useCompletion } from '@ai-sdk/react'
 import Link from 'next/link'
 import { useSearchParams } from 'next/navigation'
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef } from 'react'
 
 import { AiAssistant } from '@/app/components/AiAssistant/AiAssistant'
 
 export default function Search() {
-  const completed = useRef(false)
-
-  const { complete, completion, isLoading } = useCompletion()
-
+  const { complete, completion, isLoading } = useCompletion({
+    api: '/api/completion'
+  })
   const searchParams = useSearchParams()
   const query = searchParams.get('query')
+  const hasCompleted = useRef(false)
+  const lastQuery = useRef<string | null>(null)
 
   useEffect(() => {
-    if (!query || completed.current) return
-
-    complete(query)
-    completed.current = true
-  }, [complete, query])
-
-  useEffect(() => {
-    if (isLoading) {
-      completed.current = false
+    // Reset if query changes
+    if (query !== lastQuery.current) {
+      hasCompleted.current = false
+      lastQuery.current = query
     }
-  }, [isLoading])
+
+    // Only complete if we have a query and haven't completed yet
+    if (query && !hasCompleted.current && !isLoading) {
+      hasCompleted.current = true
+      complete(query)
+    }
+  }, [query, complete, isLoading])
 
   return (
-    <div className="min-h-screen bg-gray-50 font-libredisplay">
+    <div className="min-h-screen bg-[#f5f3f0] font-libredisplay">
       <div className="px-6 sm:px-28 md:px-48 py-16">
         <Link
           href="/"
