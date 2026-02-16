@@ -4,6 +4,7 @@ import { Contact } from '@/app/components/Contact'
 import { Gallery } from '@/app/components/Gallery'
 import { Hero } from '@/app/components/Hero'
 import { Pricing } from '@/app/components/Pricing'
+import { Testimonials } from '@/app/components/Testimonials'
 
 export default function Home() {
   return (
@@ -20,6 +21,7 @@ export default function Home() {
           <AboutMe />
           <Gallery />
           <Pricing />
+          <Testimonials />
           <Contact />
         </div>
       </main>

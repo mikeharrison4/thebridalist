@@ -34,6 +34,7 @@ export function Navigation() {
     { label: 'About', id: 'about' },
     { label: 'Gallery', id: 'gallery' },
     { label: 'Pricing', id: 'pricing' },
+    { label: 'Testimonials', id: 'testimonials' },
     { label: 'Contact', id: 'contact' }
   ]
 
