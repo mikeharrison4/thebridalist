@@ -35,7 +35,9 @@ export default function RootLayout({
           <div className="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-6 font-libredisplay">
             <div className="flex-shrink-0">
               <h1 className="font-libredisplay text-3xl sm:text-4xl md:text-5xl leading-tight">
-                <span className="uppercase tracking-wider block">The Bridalist</span>
+                <span className="uppercase tracking-wider block">
+                  The Bridalist
+                </span>
                 <span className="text-xl sm:text-2xl md:text-3xl text-gray-700 font-normal block mt-1">
                   Kirsty Hollick
                 </span>

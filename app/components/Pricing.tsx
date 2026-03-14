@@ -11,16 +11,18 @@ export function Pricing() {
             Wedding Day Styling (Bride)
           </h3>
           <div className="space-y-4">
-            <div className="flex justify-between items-center border-b border-gray-200 pb-3">
+            <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center border-b border-gray-200 pb-3">
               <span className="text-lg">Signature Bridal Hair</span>
               <span className="text-xl font-semibold">£150</span>
             </div>
-            <div className="flex justify-between items-center border-b border-gray-200 pb-3">
+            <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center border-b border-gray-200 pb-3">
               <span className="text-lg">Polished Bridal Makeup</span>
               <span className="text-xl font-semibold">£150</span>
             </div>
-            <div className="flex justify-between items-center border-b border-gray-300 pb-3">
-              <span className="text-lg font-semibold">Complete Bridal Look (Hair & Makeup)</span>
+            <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center border-b border-gray-300 pb-3">
+              <span className="text-lg font-semibold">
+                Complete Bridal Look (Hair & Makeup)
+              </span>
               <span className="text-xl font-semibold">£300</span>
             </div>
           </div>
@@ -32,21 +34,22 @@ export function Pricing() {
             Trial Experience
           </h3>
           <div className="space-y-4">
-            <div className="flex justify-between items-center border-b border-gray-200 pb-3">
+            <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center border-b border-gray-200 pb-3">
               <span className="text-lg">Hair Trial</span>
               <span className="text-xl font-semibold">£100</span>
             </div>
-            <div className="flex justify-between items-center border-b border-gray-200 pb-3">
+            <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center border-b border-gray-200 pb-3">
               <span className="text-lg">Makeup Trial</span>
               <span className="text-xl font-semibold">£100</span>
             </div>
-            <div className="flex justify-between items-center border-b border-gray-300 pb-3">
+            <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center border-b border-gray-300 pb-3">
               <span className="text-lg font-semibold">Full Look Trial</span>
               <span className="text-xl font-semibold">£200</span>
             </div>
           </div>
           <p className="text-sm text-gray-600 mt-4 text-center italic">
-            Trials are held 4–8 weeks before your wedding on Wednesdays or Fridays in Hove (BN3 8PB).
+            Trials are held 4–8 weeks before your wedding on Wednesdays or
+            Fridays in Hove (BN3 8PB).
           </p>
         </div>
 
@@ -59,13 +62,15 @@ export function Pricing() {
             (Bridesmaids, Mother of the Bride, Mother of the Groom)
           </p>
           <div className="space-y-4">
-            <div className="flex justify-between items-center border-b border-gray-200 pb-3">
+            <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center border-b border-gray-200 pb-3">
               <span className="text-lg">Hair</span>
               <span className="text-xl font-semibold">£65 per person</span>
             </div>
-            <div className="flex justify-between items-center border-b border-gray-300 pb-3">
+            <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center border-b border-gray-300 pb-3">
               <span className="text-lg">Makeup</span>
-              <span className="text-xl font-semibold">£65 per person (by assistant)</span>
+              <span className="text-xl font-semibold">
+                £65 per person (by assistant)
+              </span>
             </div>
           </div>
         </div>
@@ -76,9 +81,10 @@ export function Pricing() {
             Assistants
           </h3>
           <p className="text-sm text-gray-600 mb-4 text-center">
-            For larger bookings or bridal party makeup, I may bring a trusted assistant.
+            For larger bookings or bridal party makeup, I may bring a trusted
+            assistant.
           </p>
-          <div className="flex justify-between items-center border-b border-gray-300 pb-3">
+          <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center border-b border-gray-300 pb-3">
             <span className="text-lg">Assistant Fee</span>
             <span className="text-xl font-semibold">£80 per assistant</span>
           </div>
@@ -90,11 +96,15 @@ export function Pricing() {
             Travel
           </h3>
           <div className="space-y-4">
-            <div className="flex justify-between items-center border-b border-gray-200 pb-3">
-              <span className="text-lg">Within 30 miles of Brighton (BN41 2DF)</span>
-              <span className="text-xl font-semibold text-green-700">Complimentary</span>
+            <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center border-b border-gray-200 pb-3">
+              <span className="text-lg">
+                Within 30 miles of Brighton (BN41 2DF)
+              </span>
+              <span className="text-xl font-semibold text-green-700">
+                Complimentary
+              </span>
             </div>
-            <div className="flex justify-between items-center border-b border-gray-300 pb-3">
+            <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center border-b border-gray-300 pb-3">
               <span className="text-lg">Beyond 30 miles</span>
               <span className="text-xl font-semibold">£1 per mile</span>
             </div>
@@ -103,7 +113,9 @@ export function Pricing() {
 
         {/* Booking Info */}
         <div className="bg-[#f5f3f0] p-6 rounded-lg mt-8">
-          <h3 className="text-xl uppercase mb-4 text-center">Securing Your Date</h3>
+          <h3 className="text-xl uppercase mb-4 text-center">
+            Securing Your Date
+          </h3>
           <p className="text-center leading-relaxed">
             A 25% non-refundable deposit is required to confirm your booking.
           </p>

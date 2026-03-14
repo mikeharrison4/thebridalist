@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react'
 
 export function Navigation() {
   const [isScrolled, setIsScrolled] = useState(false)
+  const [isMenuOpen, setIsMenuOpen] = useState(false)
 
   useEffect(() => {
     const handleScroll = () => {
@@ -14,14 +15,13 @@ export function Navigation() {
   }, [])
 
   const scrollToSection = (id: string) => {
+    setIsMenuOpen(false)
     const element = document.getElementById(id)
     if (element) {
-      const header = document.querySelector('header')
-      const headerHeight = header ? header.offsetHeight : 120
-      const navHeight = 60
-      const offset = headerHeight + navHeight
+      const nav = document.querySelector('nav')
+      const navHeight = nav ? nav.offsetHeight : 0
       const elementPosition = element.getBoundingClientRect().top
-      const offsetPosition = elementPosition + window.pageYOffset - offset
+      const offsetPosition = elementPosition + window.pageYOffset - navHeight
 
       window.scrollTo({
         top: offsetPosition,
@@ -45,12 +45,61 @@ export function Navigation() {
       }`}
     >
       <div className="px-6 sm:px-28 md:px-48 py-4">
-        <div className="flex justify-center items-center gap-6 sm:gap-8 font-libredisplay">
+        {/* Desktop nav */}
+        <div className="hidden sm:flex justify-center items-center gap-8 font-libredisplay">
           {navItems.map((item) => (
             <button
               key={item.id}
               onClick={() => scrollToSection(item.id)}
-              className="uppercase tracking-wider text-sm sm:text-base hover:text-gray-600 transition-colors duration-200"
+              className="uppercase tracking-wider text-base hover:text-gray-600 transition-colors duration-200"
+            >
+              {item.label}
+            </button>
+          ))}
+        </div>
+
+        {/* Mobile hamburger button */}
+        <div className="flex sm:hidden justify-center">
+          <button
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            className="flex items-center gap-2 uppercase tracking-wider text-sm font-libredisplay"
+            aria-label="Toggle menu"
+            aria-expanded={isMenuOpen}
+          >
+            <div className="flex flex-col justify-center gap-[5px] w-5 h-5">
+              <span
+                className={`block h-[1.5px] w-full bg-current transition-all duration-300 origin-center ${
+                  isMenuOpen ? 'rotate-45 translate-y-[6.5px]' : ''
+                }`}
+              />
+              <span
+                className={`block h-[1.5px] w-full bg-current transition-all duration-300 ${
+                  isMenuOpen ? 'opacity-0' : ''
+                }`}
+              />
+              <span
+                className={`block h-[1.5px] w-full bg-current transition-all duration-300 origin-center ${
+                  isMenuOpen ? '-rotate-45 -translate-y-[6.5px]' : ''
+                }`}
+              />
+            </div>
+            <span>Menu</span>
+          </button>
+        </div>
+      </div>
+
+      {/* Mobile dropdown */}
+      <div
+        className={`sm:hidden overflow-hidden transition-all duration-300 ${
+          isMenuOpen ? 'max-h-80' : 'max-h-0'
+        }`}
+      >
+        <div className="flex flex-col items-center gap-1 pb-4 font-libredisplay">
+          {navItems.map((item) => (
+            <button
+              key={item.id}
+              onClick={() => scrollToSection(item.id)}
+              className="w-full py-3 uppercase tracking-wider text-sm hover:bg-black/5 transition-colors duration-200"
             >
               {item.label}
             </button>

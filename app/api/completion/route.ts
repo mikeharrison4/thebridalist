@@ -16,7 +16,9 @@ function formatDocumentsAsString(docs: Array<{ pageContent: string }>): string {
 }
 
 // Simple TextLoader implementation
-async function loadTextFile(filePath: string): Promise<Array<{ pageContent: string }>> {
+async function loadTextFile(
+  filePath: string
+): Promise<Array<{ pageContent: string }>> {
   const content = await readFile(filePath, 'utf-8')
   return [{ pageContent: content }]
 }
@@ -83,6 +85,7 @@ export async function POST(req: Request) {
       prompt,
       model,
       parser
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
     ] as any)
 
     const stream = await chain.stream({ question })

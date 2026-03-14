@@ -6,7 +6,9 @@ export function Contact() {
       </h2>
       <div className="max-w-2xl mx-auto text-center tracking-wider leading-relaxed">
         <p className="mb-6">
-          I'd love to hear from you! Whether you're planning your special day or have questions about my services, please don't hesitate to get in touch.
+          I'd love to hear from you! Whether you're planning your special day or
+          have questions about my services, please don't hesitate to get in
+          touch.
         </p>
         <div className="space-y-4">
           <div>

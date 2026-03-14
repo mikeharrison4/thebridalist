@@ -35,6 +35,7 @@ module.exports = {
     'react-hooks/rules-of-hooks': 'error',
     'react-hooks/exhaustive-deps': 'warn',
     'react/prop-types': 'off',
+    'react/no-unescaped-entities': 'off',
     'simple-import-sort/imports': 'error',
     'simple-import-sort/exports': 'error'
   }

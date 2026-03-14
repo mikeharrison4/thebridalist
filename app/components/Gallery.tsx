@@ -35,7 +35,7 @@ export function Gallery() {
               alt="Bridal hair and makeup work"
               fill
               sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-              className="object-cover grayscale hover:grayscale-0 transition-all duration-300"
+              className="object-cover"
               priority={index < 6}
             />
           </div>
