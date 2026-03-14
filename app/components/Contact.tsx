@@ -12,10 +12,10 @@ export function Contact() {
           <div>
             <p className="text-sm text-gray-600 mb-2 uppercase">Email</p>
             <a
-              href="mailto:hello@thebridalist.com"
+              href="mailto:kirsty.thebridalist@gmail.com"
               className="text-lg hover:underline"
             >
-              hello@thebridalist.com
+              kirsty.thebridalist@gmail.com
             </a>
           </div>
         </div>

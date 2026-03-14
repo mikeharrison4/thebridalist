@@ -1,13 +1,11 @@
 import { readFile } from 'node:fs/promises'
 import path from 'node:path'
 
-import { toUIMessageStream } from '@ai-sdk/langchain'
 import { PDFLoader } from '@langchain/community/document_loaders/fs/pdf'
 import { StringOutputParser } from '@langchain/core/output_parsers'
 import { PromptTemplate } from '@langchain/core/prompts'
 import { RunnableSequence } from '@langchain/core/runnables'
 import { ChatOpenAI } from '@langchain/openai'
-import { createUIMessageStreamResponse } from 'ai'
 
 // Allow streaming responses up to 30 seconds
 export const maxDuration = 30
@@ -89,8 +87,18 @@ export async function POST(req: Request) {
 
     const stream = await chain.stream({ question })
 
-    return createUIMessageStreamResponse({
-      stream: toUIMessageStream(stream)
+    const encoder = new TextEncoder()
+    const readableStream = new ReadableStream({
+      async start(controller) {
+        for await (const chunk of stream) {
+          controller.enqueue(encoder.encode(chunk))
+        }
+        controller.close()
+      }
+    })
+
+    return new Response(readableStream, {
+      headers: { 'Content-Type': 'text/plain; charset=utf-8' }
     })
   } catch (error) {
     console.error('Error in completion route:', error)

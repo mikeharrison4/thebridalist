@@ -1,5 +1,6 @@
 'use client'
 
+import Image from 'next/image'
 import { useState } from 'react'
 
 export function Gallery() {
@@ -28,12 +29,16 @@ export function Gallery() {
       </h2>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
         {displayedImages.map((src, index) => (
-          <img
-            key={index}
-            src={src}
-            alt="Bridal hair and makeup work"
-            className="w-full h-[300px] object-cover grayscale hover:grayscale-0 transition-all duration-300"
-          />
+          <div key={index} className="relative w-full h-[300px]">
+            <Image
+              src={src}
+              alt="Bridal hair and makeup work"
+              fill
+              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+              className="object-cover grayscale hover:grayscale-0 transition-all duration-300"
+              priority={index < 6}
+            />
+          </div>
         ))}
       </div>
       {images.length > 6 && (

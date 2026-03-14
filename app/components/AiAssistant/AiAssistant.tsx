@@ -31,8 +31,8 @@ export function AiAssistant({ inputValue = '' }) {
         </Dialog.Trigger>
       </div>
       <Dialog.Portal>
-        <Dialog.Overlay className="fixed inset-0 bg-black/50 backdrop-blur-sm data-[state=open]:animate-overlayShow" />
-        <Dialog.Content className="font-libredisplay fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 max-h-[85vh] w-[95vw] md:max-w-2xl bg-white p-8 shadow-lg focus:outline-none data-[state=open]:animate-contentShow">
+        <Dialog.Overlay className="fixed inset-0 z-[100] bg-black/50 backdrop-blur-sm data-[state=open]:animate-overlayShow" />
+        <Dialog.Content className="font-libredisplay fixed z-[100] left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 max-h-[85vh] w-[95vw] md:max-w-2xl bg-white p-8 shadow-lg focus:outline-none data-[state=open]:animate-contentShow">
           <Dialog.Title className="uppercase text-3xl tracking-wider mb-4">
             Ask me anything!
           </Dialog.Title>

@@ -9,7 +9,8 @@ import { AiAssistant } from '@/app/components/AiAssistant/AiAssistant'
 
 export default function Search() {
   const { complete, completion, isLoading } = useCompletion({
-    api: '/api/completion'
+    api: '/api/completion',
+    streamProtocol: 'text'
   })
   const searchParams = useSearchParams()
   const query = searchParams.get('query')
