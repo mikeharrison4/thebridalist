@@ -3,13 +3,13 @@ import Link from 'next/link'
 export function AboutMe() {
   return (
     <div id="about" className="bg-[#e8e4df] px-6 sm:px-28 md:px-48 py-16">
-      <div className="flex flex-col md:flex-row items-center md:items-start gap-8 md:gap-12">
+      <div className="flex flex-col lg:flex-row items-center lg:items-start gap-8 lg:gap-12">
         <img
           src="/photos/kirsty-hollick.jpeg"
-          className="h-[200px] w-[200px] md:h-[250px] md:w-[250px] rounded-full object-cover flex-shrink-0"
+          className="h-[200px] w-[200px] lg:h-[250px] lg:w-[250px] rounded-full object-cover flex-shrink-0"
           alt="Kirsty Hollick"
         />
-        <div className="flex-1 text-center md:text-left">
+        <div className="flex-1 text-center lg:text-left">
           <h2 className="text-3xl sm:text-4xl uppercase mb-6 tracking-wider">
             About me
           </h2>
